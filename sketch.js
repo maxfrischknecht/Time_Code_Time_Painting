@@ -20,11 +20,10 @@ function draw() {
 	hue = map(counter, 0, 86400, 0, 255);
 	console.log("hue: ", hue);
 
-	// if(hue >= 255){
-	// 	hue = 0;
-	// 	counter = 0;
-	// }
-
+	if(hue >= 255){
+		hue = 0;
+		counter = 0;
+	}
 }
 
 function windowResized() {
