@@ -1,6 +1,5 @@
-let certainTime = "7:49:00 PM";
-let endTime = "7:50:00 PM";
-//let certainTime = "8:01:00 PM";
+let certainTime = "8:01:00 PM";
+let endTime = "8:02:00 PM";
 let counter;
 let hue; let saturation = 255; let brightness = 255;
 let brightness2 = 255;
@@ -25,17 +24,14 @@ function setup() {
 	counter = secs/48;
 	hue = map(secs, 0, 86400, 0, 255);
 
-
 	cells = Array(floor(width / w));
   for (let i = 0; i < 8; i++) {
     cells[i] = int(random(2));
 	}
 	randomRuleset();
-
 }
 
 function draw() {
-
 		for (let i = 0; i < cells.length; i++) {
 			if (cells[i] === 1) {
 				fill(hue, saturation, brightness2);
@@ -51,9 +47,6 @@ function draw() {
 			generation = 0;
 			randomRuleset();
 		}
-
-		
-
 }
 
 function windowResized() {
@@ -73,18 +66,11 @@ function theDay() {
 		textLayer.style.display = "none";
 	} else {
 		brightness2 = 255;
-		// if(brightness2 < 255){
-		// 	brightness2+=50;
-		// }
 		textLayer.style.display = "block";
 	}
-
-	//console.log("hue", hue);
-	//console.log(d.toLocaleTimeString());
 	if(hue >= 255){
 		hue = 0;
 	}
-
 }
 
 
