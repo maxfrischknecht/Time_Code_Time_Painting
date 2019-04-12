@@ -8,12 +8,12 @@ let cells;
 let generation = 0;
 let ruleset = [0, 1, 1, 1, 0, 1, 1, 0];
 
-let moment;
+let moment = false;
 
 function setup() {
 	var cnv = createCanvas(windowWidth, windowHeight);
 	cnv.parent('p5-sketch-holder');
-	setInterval(theDay, 1000);
+	setInterval(theDay, 50);
 	colorMode(HSB, 255);
 	noStroke();
 
@@ -32,31 +32,26 @@ function setup() {
 }
 
 function draw() {
-
-
-
 	if(moment) {
 		for (let i = 0; i < cells.length; i++) {
 			if (cells[i] === 1) {
-				fill(200);
-			} else {
-				fill(51);
+				fill(100, saturation, brightness);
 				rect(i * w, generation * w, w, w);
 			}
 		}
 		if (generation < height/w) {
 			generate();
+		} else {
+			console.log("done");
+			setTimeout(function(){
+				moment = false;
+			}, 3000)
 		}
 	} else {
 		fill(hue, saturation, brightness);
 		rect(0, 0, width, height);
 		hue = map(counter, 0, 86400, 0, 255);
 		console.log("hue: ", hue);
-
-		if(hue >= 255){
-			hue = 0;
-			counter = 0;
-		}
 	}
 
 }
@@ -68,12 +63,18 @@ function windowResized() {
 function theDay() {
   let d = new Date();
 	document.getElementById("timer").innerHTML = d.toLocaleTimeString();
-	counter+=1000;
+	counter+=100;
 	console.log(d.toLocaleTimeString());
 
 	if(d.toLocaleTimeString() == certainTime){
 		counter = 0;
 		hue = 0;
+	}
+
+	if(hue >= 255){
+		hue = 0;
+		counter = 0;
+		moment = true;
 	}
 }
 
