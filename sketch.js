@@ -1,7 +1,10 @@
-let certainTime = "4:58:30 PM";
+let certainTime = "7:49:00 PM";
+let endTime = "7:50:00 PM";
 //let certainTime = "8:01:00 PM";
 let counter;
-let hue = 0; let saturation = 255; let brightness = 255;
+let hue; let saturation = 255; let brightness = 255;
+let brightness2 = 255;
+let textLayer;
 
 let w = 10;
 let cells;
@@ -15,10 +18,13 @@ function setup() {
 	colorMode(HSB, 255);
 	noStroke();
 
+	textLayer = document.getElementById("text-layer");
 
 	let dt = new Date();
 	let secs = dt.getSeconds() + (60 * dt.getMinutes()) + (60 * 60 * dt.getHours());
-	counter = secs;
+	counter = secs/48;
+	hue = map(secs, 0, 86400, 0, 255);
+
 
 	cells = Array(floor(width / w));
   for (let i = 0; i < 8; i++) {
@@ -30,14 +36,10 @@ function setup() {
 
 function draw() {
 
-		//fill(hue, saturation, brightness);
-		//rect(0, 0, width, height);
-
 		for (let i = 0; i < cells.length; i++) {
 			if (cells[i] === 1) {
-				fill(200);
+				fill(hue, saturation, brightness2);
 				rect(i * w, generation * w, w, w);
-
 			} else {
 				fill(hue, saturation, brightness);
 				rect(i * w, generation * w, w, w);
@@ -60,22 +62,29 @@ function windowResized() {
 
 function theDay() {
   let d = new Date();
-	document.getElementById("timer").innerHTML = d.toLocaleTimeString();
+	document.getElementById("timer").innerHTML = d.toLocaleTimeString(('de'));
 	counter+=1;
-	console.log(d.toLocaleTimeString());
+	hue = map(counter, 0, 86400/48, 0, 255);
 
-	// if(d.toLocaleTimeString() == certainTime){
-	// 	counter = 0;
-	// 	hue = 0;
-	// }
-
-	if(hue >= 255){
-		hue = 0;
-		counter = 0;
+	if(d.toLocaleTimeString() >= certainTime && d.toLocaleTimeString() < endTime){
+		if(brightness2 > 0){
+			brightness2 = brightness2 - 10;
+		}
+		textLayer.style.display = "none";
+	} else {
+		brightness2 = 255;
+		// if(brightness2 < 255){
+		// 	brightness2+=50;
+		// }
+		textLayer.style.display = "block";
 	}
 
-	hue += counter;
-	console.log(hue);
+	//console.log("hue", hue);
+	//console.log(d.toLocaleTimeString());
+	if(hue >= 255){
+		hue = 0;
+	}
+
 }
 
 

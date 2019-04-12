@@ -20,17 +20,33 @@ body, h1, h2, h3, h4, h5, h6, p, li, a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   word-break: break-word;
+  color: white;
 }
 
 #text-layer{
-  color: white;
   padding-top: 10px;
 }
 
-#timer {
+#text-layer-right {
   text-align: right;
 }
 
+#help {
+  position: absolute;
+  bottom: 15px;
+}
+
+#help a {
+  text-decoration: underline;
+}
+
+#the-hint{
+  display: none;
+}
+
+#help a:hover + #the-hint{
+  display: block;
+}
 
 
 /* P5JS

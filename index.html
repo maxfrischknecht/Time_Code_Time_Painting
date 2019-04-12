@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="origin-when-cross-origin" />
 
-	<title>Yoko Ono Codes – Time Painting</title>
+	<title>Time Code – A interpretation of Time Painting</title>
 
 	<!-- P5JS Library and Sketch -->
 	<script src="assets/p5js/p5.js"></script>
@@ -33,13 +33,29 @@
 				<p>Make it a very short time.</p>
 				<br>
 				<p>1961 summer</p>
+				<p>Yoko Ono</p>
 			</div>
-			<div class="col">
+			<div class="col" id="text-layer-right">
 				<p id="timer"></p>
 			</div>
-			
+		</div>
+		<div id="help">
+				<p>Want to know the time? <a href="javascript:void(0);" onclick="showHelp();">Get a hint</a>. </p>
+				<p id="the-hint">There is one static number on the website. <br> Convert it into time to find out when the painting appears.</p>
 		</div>
 	</div>
+
+ <script>
+	 let help = document.getElementById("the-hint");
+	 function showHelp(){
+		 if(help.style.display == "none"){
+			help.style.display = "block";
+		 } else {
+			help.style.display = "none";
+		 }
+	 }
+ </script>
+
 	
 </body>
 </html>
