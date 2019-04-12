@@ -22,11 +22,9 @@ body, h1, h2, h3, h4, h5, h6, p, li, a {
   word-break: break-word;
 }
 
-#ono-text {
-  position: absolute;
-  top: 15px;
-  left: 15px;
+#text-layer{
   color: white;
+  padding-top: 10px;
 }
 
 
