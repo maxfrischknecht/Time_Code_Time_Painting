@@ -1,15 +1,13 @@
-// this executes once at the beginning
 function setup() {
-	var cnv = createCanvas(windowWidth, windowHeight); // how big your sketch should be
-	cnv.parent('p5-sketch-holder'); // where to place your sketch in the index.html document
+	var cnv = createCanvas(windowWidth, windowHeight);
+	cnv.parent('p5-sketch-holder');
 }
 
-// this executes 60 times a second
 function draw() {
-	background(0, 0, 255); // blue background
+	background(0);
 }
 
-// resize the canvas if window resized
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
+

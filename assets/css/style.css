@@ -1,4 +1,6 @@
-
+body {
+  overflow: hidden;
+}
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /* Import a Google Font */
@@ -9,16 +11,22 @@ body, h1, h2, h3, h4, h5, h6, p, li, a {
 	font-family: 'Roboto Mono', monospace;
   font-weight: 400;
   text-transform: none;
-  font-size: 5rem;
+  font-size: 1rem;
   letter-spacing: 0;
-	line-height: 1;
-  color: violet;
+	line-height: 1.3;
   padding: 0px; 
   margin: 0px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   word-break: break-word;
+}
+
+#ono-text {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  color: white;
 }
 
 
