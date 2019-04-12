@@ -22,7 +22,9 @@ function setup() {
 	let dt = new Date();
 	let secs = dt.getSeconds() + (60 * dt.getMinutes()) + (60 * 60 * dt.getHours());
 	counter = secs/48;
-	hue = map(secs, 0, 86400, 0, 255);
+
+	hue = map(counter, 0, 86400, 0, 255);
+	console.log(counter, hue);
 
 	cells = Array(floor(width / w));
   for (let i = 0; i < 8; i++) {
@@ -69,6 +71,8 @@ function theDay() {
 		hue = map(counter, 0, 86400, 0, 255);
 		counter++;
 	}
+	console.log(counter, hue);
+
 
 
 	if(d.toLocaleTimeString() >= certainTime && d.toLocaleTimeString() < endTime){
@@ -80,7 +84,6 @@ function theDay() {
 		brightness2 = 255;
 		textLayer.style.display = "block";
 	}
-	console.log(hue);
 
 }
 
