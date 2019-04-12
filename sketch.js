@@ -49,6 +49,7 @@ function draw() {
 			generation = 0;
 			randomRuleset();
 		}
+
 }
 
 function windowResized() {
@@ -60,8 +61,15 @@ function windowResized() {
 function theDay() {
   let d = new Date();
 	document.getElementById("timer").innerHTML = d.toLocaleTimeString(('de'));
-	counter+=1;
-	hue = map(counter, 0, 86400/48, 0, 255);
+
+	if(hue > 255){
+		hue = 0;
+		counter = 0;
+	} else {
+		hue = map(counter, 0, 86400, 0, 255);
+		counter++;
+	}
+
 
 	if(d.toLocaleTimeString() >= certainTime && d.toLocaleTimeString() < endTime){
 		if(brightness2 > 0){
@@ -72,9 +80,8 @@ function theDay() {
 		brightness2 = 255;
 		textLayer.style.display = "block";
 	}
-	if(hue >= 255){
-		hue = 0;
-	}
+	console.log(hue);
+
 }
 
 
