@@ -19,12 +19,9 @@ function setup() {
 
 	textLayer = document.getElementById("text-layer");
 
-	let dt = new Date();
-	let secs = dt.getSeconds() + (60 * dt.getMinutes()) + (60 * 60 * dt.getHours());
-	counter = secs/48;
-
-	hue = map(counter, 0, 86400, 0, 255);
-	console.log(counter, hue);
+	let d = new Date();
+	let secs = d.getSeconds() + (60 * d.getMinutes()) + (60 * 60 * d.getHours());
+	hue = map(secs, 0, 86400, 0, 255);
 
 	cells = Array(floor(width / w));
   for (let i = 0; i < 8; i++) {
@@ -57,21 +54,20 @@ function draw() {
 function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
 	background(hue, saturation, brightness);
-
 }
 
 function theDay() {
   let d = new Date();
 	document.getElementById("timer").innerHTML = d.toLocaleTimeString(('de'));
+	let secs = d.getSeconds() + (60 * d.getMinutes()) + (60 * 60 * d.getHours());
+
+	console.log(secs, hue);
 
 	if(hue > 255){
 		hue = 0;
-		counter = 0;
 	} else {
-		hue = map(counter, 0, 86400, 0, 255);
-		counter++;
+		hue = int(map(secs, 0, 86400, 0, 255));
 	}
-	console.log(counter, hue);
 
 
 
