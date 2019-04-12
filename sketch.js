@@ -8,12 +8,10 @@ let cells;
 let generation = 0;
 let ruleset = [0, 1, 1, 1, 0, 1, 1, 0];
 
-let moment = false;
-
 function setup() {
 	var cnv = createCanvas(windowWidth, windowHeight);
 	cnv.parent('p5-sketch-holder');
-	setInterval(theDay, 50);
+	setInterval(theDay, 1000);
 	colorMode(HSB, 255);
 	noStroke();
 
@@ -26,33 +24,33 @@ function setup() {
   for (let i = 0; i < 8; i++) {
     cells[i] = int(random(2));
 	}
-	for (let i = 0; i < cells.length; i++) {
-    ruleset[i] = int(random(2));
-	}
+	randomRuleset();
+
 }
 
 function draw() {
-	if(moment) {
+
+		//fill(hue, saturation, brightness);
+		//rect(0, 0, width, height);
+
 		for (let i = 0; i < cells.length; i++) {
 			if (cells[i] === 1) {
-				fill(100, saturation, brightness);
+				fill(200);
+				rect(i * w, generation * w, w, w);
+
+			} else {
+				fill(hue, saturation, brightness);
 				rect(i * w, generation * w, w, w);
 			}
 		}
 		if (generation < height/w) {
 			generate();
 		} else {
-			console.log("done");
-			setTimeout(function(){
-				moment = false;
-			}, 3000)
+			generation = 0;
+			randomRuleset();
 		}
-	} else {
-		fill(hue, saturation, brightness);
-		rect(0, 0, width, height);
-		hue = map(counter, 0, 86400, 0, 255);
-		console.log("hue: ", hue);
-	}
+
+		
 
 }
 
@@ -63,19 +61,21 @@ function windowResized() {
 function theDay() {
   let d = new Date();
 	document.getElementById("timer").innerHTML = d.toLocaleTimeString();
-	counter+=100;
+	counter+=1;
 	console.log(d.toLocaleTimeString());
 
-	if(d.toLocaleTimeString() == certainTime){
-		counter = 0;
-		hue = 0;
-	}
+	// if(d.toLocaleTimeString() == certainTime){
+	// 	counter = 0;
+	// 	hue = 0;
+	// }
 
 	if(hue >= 255){
 		hue = 0;
 		counter = 0;
-		moment = true;
 	}
+
+	hue += counter;
+	console.log(hue);
 }
 
 
@@ -108,4 +108,10 @@ function rules(a, b, c) {
   if (a == 0 && b == 0 && c == 1) return ruleset[6];
   if (a == 0 && b == 0 && c == 0) return ruleset[7];
   return 0;
+}
+
+function randomRuleset(){
+	for (let i = 0; i < cells.length; i++) {
+    ruleset[i] = int(random(2));
+	}
 }
