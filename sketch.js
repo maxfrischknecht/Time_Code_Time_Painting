@@ -1,5 +1,5 @@
-let certainTime = "8:01:00 PM";
-let endTime = "8:02:00 PM";
+let certainTime = "8:11:00 PM";
+let endTime = "8:12:00 PM";
 let counter;
 let hue; let saturation = 255; let brightness = 255;
 let brightness2 = 255;
@@ -29,6 +29,8 @@ function setup() {
     cells[i] = int(random(2));
 	}
 	randomRuleset();
+
+	background(hue, saturation, brightness);
 }
 
 function draw() {
@@ -50,7 +52,9 @@ function draw() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+	resizeCanvas(windowWidth, windowHeight);
+	background(hue, saturation, brightness);
+
 }
 
 function theDay() {
