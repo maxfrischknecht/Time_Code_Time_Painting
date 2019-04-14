@@ -1,5 +1,5 @@
-let certainTime = "8:04:00 PM";
-let endTime = "8:05:00 PM";
+let certainTime = "8:01:00 PM";
+let endTime = "8:02:00 PM";
 let counter;
 let hue; let saturation = 255; let brightness = 255;
 let brightness2 = 255;
